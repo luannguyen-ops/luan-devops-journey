@@ -7,3 +7,5 @@
 
 **Tuần 1 – Ngày 1 (02/03):** Hoàn thành chương 1-2 Python Basics  
 File: Day1_pythonbasic.py ✅
+
+Đọc lại : Debugging
