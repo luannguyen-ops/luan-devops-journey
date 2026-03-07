@@ -1,0 +1,61 @@
+import sys
+def calculator(a, b, phep_tinh):
+    if(phep_tinh == '+'):
+        return f'{a} + {b} = {a + b}'
+    elif(phep_tinh == '-'):
+        return f'{a} - {b} = {a - b}'
+    elif(phep_tinh == '*'):
+        return f'{a} * {b} = {a * b}'
+    elif(phep_tinh == '/'):
+        if(b == 0):
+            return 'Mau so khong the bang 0'
+        else:
+           return f'{a} / {b} = {a / b}'
+
+lich_su_pt = []
+thong_ke_pt = {"+":0, "-":0, "*":0, "/":0}
+while True:
+    try:
+        print('Nhap gia tri va phep tinh')
+        print('*****So lan dung phep tinh*****')
+        for phep, so_lan in thong_ke_pt.items():
+            print(f'{phep:>2} : {so_lan:>3}')
+        #Nhap a
+        a_nhap = input('Nhap: ').strip()
+        if a_nhap.lower() == 'exit':
+            print('Tam biet')
+            sys.exit(0)
+        a = int(a_nhap)
+        #Nhap phep tinh
+        phep_tinh = input("Nhap phep tinh hoac exit: ").strip()
+        if phep_tinh.lower() == 'exit':
+            print('Tam biet')
+            sys.exit(0)
+        if phep_tinh not in ['+', '-', '*','/']:
+            print('Nhap sai phep tinh! Xin hay nhap lai!!!')
+            continue
+        
+        thong_ke_pt[phep_tinh] += 1
+        #Nhap b
+        b_nhap = input("Nhap: ").strip()
+        if b_nhap.lower() == 'exit':
+            print('Tam biet')
+            sys.exit(0)
+        b = int(b_nhap)
+        kq = calculator(a, b, phep_tinh)
+        print(kq)
+        lich_su_pt.append(kq)
+        print('Nhap: 1-tiep tuc / 3-lich su / exit-thoat')
+        chon = input('Nhap lua chon: ').strip().lower()
+        if chon == '3':
+            print('*****So lan dung phep tinh*****')
+            if not lich_su_pt:
+                print('Chua co phep tinh nao')
+            else:
+                for stt, tinh_toan in enumerate(lich_su_pt, 1):
+                        print(f'{stt}. {tinh_toan}')
+        elif chon in ['exit', 'e', 'thoat']:
+                print('Tam biet')
+                sys.exit(0)
+    except ValueError:
+        print('Hay nhap lai')
